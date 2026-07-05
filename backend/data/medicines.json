@@ -1,0 +1,38 @@
+[
+  {
+    "Id": "1c8e62d0-d396-4f2e-92bd-d3b289b4854a",
+    "FullName": "Paracetamol 500mg",
+    "Notes": "Pain relief",
+    "ExpiryDate": "2025-04-20T00:00:00",
+    "Quantity": 3,
+    "Price": 3.99,
+    "Brand": "GSK"
+  },
+  {
+    "Id": "aa13f8fe-e51a-443e-b94c-a341a652a806",
+    "FullName": "Amoxicillin 250mg",
+    "Notes": "Antibiotic",
+    "ExpiryDate": "2026-12-01T00:00:00",
+    "Quantity": 8,
+    "Price": 12.50,
+    "Brand": "Pfizer"
+  },
+  {
+    "Id": "37987b4c-65d4-43ab-8bfc-882c946cc7c1",
+    "FullName": "dichlofenac",
+    "Notes": "w",
+    "ExpiryDate": "2027-04-03T00:00:00",
+    "Quantity": 0,
+    "Price": 111,
+    "Brand": "ABC"
+  },
+  {
+    "Id": "87df6a16-bf88-4ca8-ac34-29fa81f9cf46",
+    "FullName": "dichlofenac",
+    "Notes": "",
+    "ExpiryDate": "2027-04-03T00:00:00",
+    "Quantity": 100,
+    "Price": 111,
+    "Brand": "ABC"
+  }
+]
