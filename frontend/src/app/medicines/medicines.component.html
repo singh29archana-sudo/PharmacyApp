@@ -1,0 +1,93 @@
+<div class="page-container">
+  <div class="page-header">
+    <h1>💊 Medicines</h1>
+    <button class="btn btn-primary" (click)="toggleAddForm()">
+      {{ showAddForm ? '✕ Cancel' : '+ Add Medicine' }}
+    </button>
+  </div>
+
+  <!-- Alerts -->
+  <div class="alert alert-error" *ngIf="errorMessage">{{ errorMessage }}</div>
+  <div class="alert alert-success" *ngIf="successMessage">{{ successMessage }}</div>
+
+  <!-- Add Medicine Form -->
+  <div class="card form-card" *ngIf="showAddForm">
+    <h2>Add New Medicine</h2>
+    <form (ngSubmit)="submitAdd()" #addForm="ngForm">
+      <div class="form-grid">
+        <div class="form-group">
+          <label>Full Name *</label>
+          <input type="text" [(ngModel)]="newMedicine.fullName" name="fullName" required placeholder="e.g. Paracetamol 500mg" />
+        </div>
+        <div class="form-group">
+          <label>Brand *</label>
+          <input type="text" [(ngModel)]="newMedicine.brand" name="brand" required placeholder="e.g. GSK" />
+        </div>
+        <div class="form-group">
+          <label>Expiry Date *</label>
+          <input type="date" [(ngModel)]="newMedicine.expiryDate" name="expiryDate" required />
+        </div>
+        <div class="form-group">
+          <label>Quantity</label>
+          <input type="number" [(ngModel)]="newMedicine.quantity" name="quantity" min="0" />
+        </div>
+        <div class="form-group">
+          <label>Price ($)</label>
+          <input type="number" [(ngModel)]="newMedicine.price" name="price" min="0" step="0.01" />
+        </div>
+        <div class="form-group full-width">
+          <label>Notes</label>
+          <textarea [(ngModel)]="newMedicine.notes" name="notes" rows="2" placeholder="Optional notes..."></textarea>
+        </div>
+      </div>
+      <div class="form-actions">
+        <button type="submit" class="btn btn-primary">Save Medicine</button>
+        <button type="button" class="btn btn-secondary" (click)="toggleAddForm()">Cancel</button>
+      </div>
+    </form>
+  </div>
+
+  <!-- Search -->
+  <div class="search-bar">
+    <input
+      type="text"
+      [(ngModel)]="searchTerm"
+      (ngModelChange)="onSearchChange()"
+      placeholder="🔍 Search by medicine name..."
+      class="search-input"
+    />
+  </div>
+
+  <!-- Legend -->
+  <div class="legend">
+    <span class="legend-item legend-red">Expiry &lt; 30 days</span>
+    <span class="legend-item legend-yellow">Quantity &lt; 10</span>
+  </div>
+
+  <!-- Table -->
+  <div class="table-wrapper">
+    <table>
+      <thead>
+        <tr>
+          <th>Full Name</th>
+          <th>Brand</th>
+          <th>Expiry Date</th>
+          <th>Quantity</th>
+          <th>Price</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let medicine of filteredMedicines" [ngClass]="getRowClass(medicine)">
+          <td>{{ medicine.fullName }}</td>
+          <td>{{ medicine.brand }}</td>
+          <td>{{ medicine.expiryDate | date:'mediumDate' }}</td>
+          <td>{{ medicine.quantity }}</td>
+          <td>{{ medicine.price | currency }}</td>
+        </tr>
+        <tr *ngIf="filteredMedicines.length === 0">
+          <td colspan="5" class="empty-state">No medicines found.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

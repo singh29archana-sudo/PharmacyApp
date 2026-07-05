@@ -1,0 +1,73 @@
+<div class="page-container">
+  <div class="page-header">
+    <h1>🧾 Sales Records</h1>
+    <button class="btn btn-primary" (click)="toggleForm()">
+      {{ showForm ? '✕ Cancel' : '+ Record Sale' }}
+    </button>
+  </div>
+
+  <!-- Alerts -->
+  <div class="alert alert-error" *ngIf="errorMessage">{{ errorMessage }}</div>
+  <div class="alert alert-success" *ngIf="successMessage">{{ successMessage }}</div>
+
+  <!-- Record Sale Form -->
+  <div class="card form-card" *ngIf="showForm">
+    <h2>Record a Sale</h2>
+    <form (ngSubmit)="submitSale()">
+      <div class="form-grid">
+        <div class="form-group">
+          <label>Medicine *</label>
+          <select [(ngModel)]="saleRequest.medicineId" name="medicineId" required>
+            <option value="">— Select a medicine —</option>
+            <option *ngFor="let m of medicines" [value]="m.id">
+              {{ m.fullName }} (Stock: {{ m.quantity }})
+            </option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Quantity to Sell *</label>
+          <input type="number" [(ngModel)]="saleRequest.quantitySold" name="quantitySold" min="1" required />
+        </div>
+        <div class="form-group" *ngIf="selectedMedicine">
+          <label>Unit Price</label>
+          <input type="text" [value]="selectedMedicine.price | currency" disabled />
+        </div>
+        <div class="form-group" *ngIf="selectedMedicine">
+          <label>Total</label>
+          <input type="text" [value]="(selectedMedicine.price * saleRequest.quantitySold) | currency" disabled />
+        </div>
+      </div>
+      <div class="form-actions">
+        <button type="submit" class="btn btn-primary">Confirm Sale</button>
+        <button type="button" class="btn btn-secondary" (click)="toggleForm()">Cancel</button>
+      </div>
+    </form>
+  </div>
+
+  <!-- Table -->
+  <div class="table-wrapper">
+    <table>
+      <thead>
+        <tr>
+          <th>Medicine</th>
+          <th>Qty Sold</th>
+          <th>Unit Price</th>
+          <th>Total</th>
+          <th>Sale Date</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let sale of sales">
+          <td>{{ sale.medicineName }}</td>
+          <td>{{ sale.quantitySold }}</td>
+          <td>{{ sale.priceAtSale | currency }}</td>
+          <td>{{ sale.priceAtSale * sale.quantitySold | currency }}</td>
+          <td>{{ sale.saleDate | date:'medium' }}</td>
+        </tr>
+        <tr *ngIf="sales.length === 0">
+          <td colspan="5" class="empty-state">No sales recorded yet.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
