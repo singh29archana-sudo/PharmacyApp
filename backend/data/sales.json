@@ -4,7 +4,7 @@
     "MedicineId": "1c8e62d0-d396-4f2e-92bd-d3b289b4854a",
     "MedicineName": "Paracetamol 500mg",
     "QuantitySold": 2,
-    "SaleDate": "2026-04-02T20:24:20.882855Z",
+    "SaleDate": "2026-07-02T20:24:20.882855Z",
     "PriceAtSale": 3.99
   },
   {
@@ -12,7 +12,7 @@
     "MedicineId": "aa13f8fe-e51a-443e-b94c-a341a652a806",
     "MedicineName": "Amoxicillin 250mg",
     "QuantitySold": 42,
-    "SaleDate": "2026-04-02T20:37:00.314495Z",
+    "SaleDate": "2026-07-02T20:37:00.314495Z",
     "PriceAtSale": 12.50
   },
   {
@@ -20,7 +20,7 @@
     "MedicineId": "37987b4c-65d4-43ab-8bfc-882c946cc7c1",
     "MedicineName": "dichlofenac",
     "QuantitySold": 1,
-    "SaleDate": "2026-04-02T20:39:16.028171Z",
+    "SaleDate": "2026-07-02T20:39:16.028171Z",
     "PriceAtSale": 111
   }
 ]
